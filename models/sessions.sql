@@ -34,7 +34,7 @@ select
     base.total_unique_urls,
     base.course_duration,
     base.course_metadata,
-    
+    base.task_duration,
     {% for type in var("fullstory_events_types") -%}
     base.total_{{ type }}_events{% if not loop.last %},{% endif %}
     {% endfor %},
