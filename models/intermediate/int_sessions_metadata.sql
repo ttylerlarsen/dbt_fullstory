@@ -27,6 +27,19 @@ with events_enriched as (
         event_time desc
 )
 
+, course_aggregates as (
+    select
+        full_session_id
+        , course_id
+        , sum(iff(is_course_event=true, event_duration_seconds, 0)) as course_duration
+    from
+        events_enriched
+    where
+        course_id is not null
+    group by
+        1,2
+)
+
 , course_session_aggregates as (
     select
         full_session_id
