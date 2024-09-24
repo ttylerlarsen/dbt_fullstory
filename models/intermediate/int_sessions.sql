@@ -26,7 +26,7 @@ select
     {% endfor %},
     count(case when events.source_type = 'web' then 1 end) as total_web_events,
     count(case when events.source_type = 'mobile_app' then 1 end) as total_mobile_app_events,
-    {{ dbt.any_value("course_sessions.event_duration_seconds") }} as course_duration,
+    {{ dbt.any_value("course_sessions.course_event_duration_seconds") }} as course_duration,
 from {{ ref("events") }} as events
 left outer join
     {{ ref("stg_events__user_keys") }} as users on
